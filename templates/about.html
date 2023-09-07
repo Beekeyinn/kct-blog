@@ -1,0 +1,61 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}
+    About
+{% endblock title %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{% static 'images/profile.jpeg' %}"
+                 alt="Bikin Shrestha"
+                 class="img-fluid rounded-circle mb-4 mt-4"
+                 height="100%"
+                 width="100%" />
+        </div>
+        <div class="col-md-8">
+            <h1 class="text-info text-center p-3">About Bikin Shrestha</h1>
+            <p>
+                Hello there! I'm Bikin Shrestha, a 25-year-old Python Developer and teacher with a passion for web development, Shopify app development, and creating Python packages.
+            </p>
+            <p>
+                My journey in the world of coding began as a fascination and has now turned into a thriving career. I find joy in crafting elegant solutions to complex problems and sharing my knowledge with others through teaching.
+            </p>
+            <p>
+                When I'm not immersed in lines of code, you'll find me indulging in my hobbies. I have a profound love for music; there's always a tune playing in the background as I explore the virtual realm of programming. Connecting with nature is another facet of my personality, as I find solace in the beauty of the natural world.
+            </p>
+            <p>
+                Through this blog, I hope to combine my technical expertise with my creative interests to bring you insightful articles, tutorials, and stories. Join me as I navigate the realms of technology, teaching, and personal exploration.
+            </p>
+            <p>
+                Feel free to reach out to me at <a href="mailto:razzshrz07@gmail.com">razzshrz07@gmail.com</a> for collaborations, questions, or just to share your thoughts!
+            </p>
+            <p>
+                You can also connect with me on LinkedIn: <a href="https://www.linkedin.com/in/beking-shrestha-89ba33206/">Bikin Shrestha</a>
+            </p>
+            <p>
+                Explore my GitHub repositories: <a href="https://github.com/beking-shrestha-89ba33206/">@beking-shrestha-89ba33206</a>
+            </p>
+            <p>Stay curious, keep coding, and let's uncover the wonders of technology together!</p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2>Contact Information</h2>
+            <p>
+                Email: <a href="mailto:razzshrz07@gmail.com">razzshrz07@gmail.com</a>
+            </p>
+            <p>
+                LinkedIn: <a href="https://www.linkedin.com/in/beking-shrestha-89ba33206/">Bikin Shrestha</a>
+            </p>
+            <p>
+                GitHub: <a href="https://github.com/beking-shrestha-89ba33206/">Bikin Shrestha</a>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h2>Hobbies</h2>
+            <p>Listening to Music</p>
+            <p>Coding and Development</p>
+            <p>Exploring Nature</p>
+        </div>
+    </div>
+{% endblock content %}

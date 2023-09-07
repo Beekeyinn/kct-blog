@@ -1,0 +1,26 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.heading{
+    font-size: larger;
+    text-decoration: underline;
+}
+.post-list .card {
+    width: 100%;
+}
+
+
+
+.post-list-image{
+    width: 100%;
+    padding: 1rem;
+}
+
+.post-list-image img{
+    height:14rem
+}
+
+.form p{
+    margin-bottom: 1rem;
+}

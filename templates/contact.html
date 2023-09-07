@@ -1,0 +1,44 @@
+{% extends "layout/base.html" %}
+{% block title %}
+    Contact
+{% endblock title %}
+{% block content %}
+    <div class="text-center">
+        <h1 class="text-info  p-3">Contact Bikin Shrestha</h1>
+        <p>If you have any questions, suggestions, or just want to say hello, feel free to get in touch with me!</p>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2 class="text-info">Contact Form</h2>
+            <form action="" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary float-end">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="information">
+                <h2>Contact Information</h2>
+                <p>
+                    Email: <a href="mailto:razzshrz07@gmail.com">razzshrz07@gmail.com</a>
+                </p>
+                <p>
+                    LinkedIn: <a href="https://www.linkedin.com/in/beking-shrestha-89ba33206/">Bikin Shrestha</a>
+                </p>
+                <p>
+                    GitHub: <a href="https://github.com/beking-shrestha-89ba33206/">@beking-shrestha-89ba33206</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

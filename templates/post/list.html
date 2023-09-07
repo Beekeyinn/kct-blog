@@ -1,0 +1,83 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}
+    Post List
+{% endblock title %}
+{% block content %}
+    <section class="post-list">
+        <div class="post-create">
+            <a class="text-decoration-none text-black"
+               href="{% url 'post-create' %}">
+                <button class="btn btn-md btn-outline-primary float-end">Create New Post</button>
+            </a>
+        </div>
+        <div class="section-title mt-3 mb-3">
+            <h1 class="text-info text-center">Post List</h1>
+        </div>
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 p-1 d-flex align-items-stretch justify-content-center">
+                    <div class="card p-1">
+                        <div class="post-date">
+                            <span class="float-end px-3 fs-6 fw-lighter fst-italic ">{{ post.created_at|date:"D, d M, Y" }}</span>
+                        </div>
+                        {% if post.image %}
+                            <div class="post-list-image">
+                                <img src="{{ post.image.url }}"
+                                     alt="{{ post.title }}"
+                                     width="100%"
+                                     height="" />
+                            </div>
+                        {% else %}
+                            <div class="post-list-image">
+                                <img src="{% static 'images/no_image.jpg' %}"
+                                     alt="No Image"
+                                     width="100%"
+                                     height="" />
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a class="text-decoration-none text-dark"
+                                   href="{% url 'post-detail' post.id %}">{{ post.title|slice:"0:20" }}</a>
+                            </h5>
+                            <p class="card-text">{{ post.content|slice:'0:25' }} ...</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="btn btn-sm btn-warning">
+                                    <a class="text-decoration-none text-dark"
+                                       href="{% url 'post-edit' post.id %}">Edit</a>
+                                </div>
+                                <div>
+                                    <form method="post" action="{% url 'post-delete' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id" value="{{ post.id }}" />
+                                        <input class="btn btn-sm btn-danger" type="submit" value="Delete" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if posts.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-link active" href="#">{{ posts.number }}</a>
+                </li>
+                {% if posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </section>
+{% endblock content %}
