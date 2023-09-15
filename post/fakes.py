@@ -1,5 +1,6 @@
 from faker import Faker
 import random
+from accounts.models import User
 from post.models import Post
 
 images = [
@@ -13,9 +14,11 @@ images = [
 
 def insert_fake_data_in_post():
     fake = Faker()
+    users = User.objects.all()
     for i in range(40):
         Post.objects.create(
             title=fake.sentence(),
             content=fake.paragraph(nb_sentences=20),
             image=random.choice(images),
+            user=random.choice(users),
         )

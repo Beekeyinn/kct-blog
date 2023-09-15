@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views import View
 from django.urls import reverse
-from django.contrib.auth.models import User
+from accounts.models import User
 from django.contrib.auth import authenticate, login, logout
 from accounts.forms import SignUpForm, LoginForm
 
@@ -15,7 +15,7 @@ class LoginView(View):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(
-                username=form.cleaned_data.get("username"),
+                username=form.cleaned_data.get("email"),
                 password=form.cleaned_data.get("password"),
             )
             if user:
@@ -35,7 +35,10 @@ class SignUpView(View):
         data = request.POST
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = User(username=form.cleaned_data.get("username"))
+            user = User(
+                email=form.cleaned_data.get("email"),
+                username=form.cleaned_data.get("username"),
+            )
             user.set_password(form.cleaned_data.get("password"))
             user.save()
             return redirect(reverse("login"))
