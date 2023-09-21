@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from accounts.views import LoginView, SignUpView, LogoutView
 from post.views import IndexView
+from home.views import handle_404
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("signup/", SignUpView.as_view(), name="signup"),
+    path("page_not_found", handle_404, name="404_error"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
