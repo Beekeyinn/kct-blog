@@ -32,6 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=200)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    # audio = models.FileField(upload_to="")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]

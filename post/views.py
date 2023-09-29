@@ -36,11 +36,16 @@ class PostDetailView(View):
 
 class PostEditView(LoginRequiredMixin, View):
     def get(self, request, id, *args, **kwargs):
-        post = Post.objects.get(id=id)
-        if post.user != request.user:
+        try:
+            post = Post.objects.get(id=id)
+            if post.user != request.user:
+                return redirect(reverse("403_error"))
+            form = PostForm(instance=post)
+            return render(request, "post/edit.html", context={"form": form})
+        except Post.DoesNotExist:
             return redirect(reverse("404_error"))
-        form = PostForm(instance=post)
-        return render(request, "post/edit.html", context={"form": form})
+        except Exception:
+            return redirect(reverse("500_error"))
 
     def post(self, request, id, *args, **kwargs):
         post = Post.objects.get(id=id)
@@ -70,7 +75,7 @@ class PostDeleteView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         post = Post.objects.get(id=request.POST.get("id"))
         if post.user != request.user:
-            return redirect(reverse("404_error"))
+            return redirect(reverse("403_error"))
         post.delete()
         return redirect(reverse("post-list"))
 

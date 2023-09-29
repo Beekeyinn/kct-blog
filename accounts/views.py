@@ -4,6 +4,7 @@ from django.urls import reverse
 from accounts.models import User
 from django.contrib.auth import authenticate, login, logout
 from accounts.forms import SignUpForm, LoginForm
+from profiles.models import UserProfile
 
 
 # Create your views here.
@@ -41,6 +42,11 @@ class SignUpView(View):
             )
             user.set_password(form.cleaned_data.get("password"))
             user.save()
+            UserProfile.objects.create(
+                user=user,
+                firstname=data.get("firstname"),
+                lastname=data.get("lastname"),
+            )
             return redirect(reverse("login"))
         else:
             print("Errors", form.errors)
